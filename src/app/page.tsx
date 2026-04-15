@@ -16,11 +16,11 @@ type SectionProps = {
 function Section({ id, title, children, icon }: SectionProps) {
   return (
     <section id={id} className="scroll-mt-24 py-12" data-animate="pixel-rise">
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-start gap-4 sm:items-center">
         {icon ? (
           <Image src={icon} alt="" width={20} height={20} className="section-icon" />
         ) : null}
-        <h2 className="font-pixel text-lg text-white">{title}</h2>
+        <h2 className="font-pixel text-lg leading-tight text-white">{title}</h2>
         <div className="h-[2px] flex-1 bg-violet-400/40" />
       </div>
       <div className="mt-6 text-zinc-200">{children}</div>
@@ -92,7 +92,7 @@ export default function Home() {
                 src="/profile/pixel-profile.svg"
                 alt="Pixel profile"
                 fill
-                className="object-contain p-4"
+                className="object-contain p-4 z-0"
                 sizes="200px"
                 priority
               />
@@ -100,7 +100,7 @@ export default function Home() {
                 src="/profile/blink-profile.png"
                 alt="Blink profile"
                 fill
-                className="blink-frame object-contain p-4"
+                className="blink-frame object-contain p-4 z-10"
                 sizes="200px"
                 priority
               />

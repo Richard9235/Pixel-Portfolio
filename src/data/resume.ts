@@ -87,8 +87,7 @@ export const resume = {
       name: "Deretso",
       subtitle: "Commuter Navigation",
       dates: "11/2023 – 04/2024",
-      link: "https://github.com/Richard9235/STIDeretso",
-      linkLabel: "GitHub repo",
+      linkLabel: "Private build",
       bullets: [
         "Tech Lead of an 8-member team; built the full frontend for a route optimizer balancing cost, time, and efficiency across Metro Manila.",
         "Recognized at a national hackathon.",
