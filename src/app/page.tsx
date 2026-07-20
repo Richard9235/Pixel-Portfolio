@@ -4,6 +4,7 @@ import AnimateOnScroll from "@/components/animate-on-scroll";
 import CertificatesGrid from "@/components/certificates-grid";
 import PageLoader from "@/components/page-loader";
 import NavLinks from "@/components/nav-links";
+import PrivateProjectCard from "@/components/private-project-card";
 import { resume } from "@/data/resume";
 
 type SectionProps = {
@@ -12,6 +13,16 @@ type SectionProps = {
   children: ReactNode;
   icon?: string;
 };
+
+type ResumeProject = (typeof resume.projects)[number];
+
+function getProjectScreenshots(project: ResumeProject): string[] | null {
+  if (!("screenshots" in project) || !Array.isArray(project.screenshots)) {
+    return null;
+  }
+
+  return project.screenshots.length > 0 ? project.screenshots : null;
+}
 
 function Section({ id, title, children, icon }: SectionProps) {
   return (
@@ -202,68 +213,81 @@ export default function Home() {
 
         <Section id="projects" title="Projects" icon="/icons/pxlkit/trophy.svg">
           <div className="grid gap-6 md:grid-cols-2">
-            {resume.projects.map((project) => (
-              <div key={project.name}>
-                {project.link ? (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="pixel-card block rounded-sm border border-white/15 bg-black/30 p-6"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-pixel text-sm text-white">
-                          {project.name}
-                        </h3>
-                        <p className="text-xs text-zinc-400">
-                          {project.subtitle}
-                        </p>
+            {resume.projects.map((project) => {
+              const screenshots = getProjectScreenshots(project);
+
+              return (
+                <div key={project.name}>
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="pixel-card block rounded-sm border border-white/15 bg-black/30 p-6"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-pixel text-sm text-white">
+                            {project.name}
+                          </h3>
+                          <p className="text-xs text-zinc-400">
+                            {project.subtitle}
+                          </p>
+                        </div>
+                        <span className="text-xs text-cyan-200">
+                          {project.dates}
+                        </span>
                       </div>
-                      <span className="text-xs text-cyan-200">
-                        {project.dates}
-                      </span>
-                    </div>
-                    <ul className="mt-4 space-y-2 text-sm text-zinc-200">
-                      {project.bullets.map((bullet) => (
-                        <li key={bullet} className="list-[square] pl-5">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 text-xs text-cyan-200 underline decoration-dotted underline-offset-4">
-                      {project.linkLabel ?? "Project link"}
-                    </div>
-                  </a>
-                ) : (
-                  <div className="pixel-card rounded-sm border border-white/15 bg-black/30 p-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-pixel text-sm text-white">
-                          {project.name}
-                        </h3>
-                        <p className="text-xs text-zinc-400">
-                          {project.subtitle}
-                        </p>
+                      <ul className="mt-4 space-y-2 text-sm text-zinc-200">
+                        {project.bullets.map((bullet) => (
+                          <li key={bullet} className="list-[square] pl-5">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-4 text-xs text-cyan-200 underline decoration-dotted underline-offset-4">
+                        {project.linkLabel ?? "Project link"}
                       </div>
-                      <span className="text-xs text-cyan-200">
-                        {project.dates}
-                      </span>
+                    </a>
+                  ) : screenshots ? (
+                    <PrivateProjectCard
+                      name={project.name}
+                      subtitle={project.subtitle}
+                      dates={project.dates}
+                      bullets={project.bullets}
+                      linkLabel={project.linkLabel}
+                      screenshots={screenshots}
+                    />
+                  ) : (
+                    <div className="pixel-card rounded-sm border border-white/15 bg-black/30 p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-pixel text-sm text-white">
+                            {project.name}
+                          </h3>
+                          <p className="text-xs text-zinc-400">
+                            {project.subtitle}
+                          </p>
+                        </div>
+                        <span className="text-xs text-cyan-200">
+                          {project.dates}
+                        </span>
+                      </div>
+                      <ul className="mt-4 space-y-2 text-sm text-zinc-200">
+                        {project.bullets.map((bullet) => (
+                          <li key={bullet} className="list-[square] pl-5">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-4 text-xs text-cyan-200">
+                        {project.linkLabel ?? "Private build"}
+                      </div>
                     </div>
-                    <ul className="mt-4 space-y-2 text-sm text-zinc-200">
-                      {project.bullets.map((bullet) => (
-                        <li key={bullet} className="list-[square] pl-5">
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 text-xs text-cyan-200">
-                      {project.linkLabel ?? "Private build"}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </div>
         </Section>
 

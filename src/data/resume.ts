@@ -77,6 +77,12 @@ export const resume = {
       subtitle: "ISP Management Platform",
       dates: "08/2024 – 11/2025",
       linkLabel: "Private build",
+      screenshots: [
+        "/proj_ss/Wavelink%201.png",
+        "/proj_ss/Wavelink%202.png",
+        "/proj_ss/Wavelink%203.png",
+        "/proj_ss/Wavelink%204.png",
+      ],
       bullets: [
         "Engineered a production ISP management platform serving 1,000+ subscribers.",
         "Delivered an AI chatbot, analytics dashboard, and payment module within a monorepo architecture.",
@@ -88,19 +94,36 @@ export const resume = {
       subtitle: "Commuter Navigation",
       dates: "11/2023 – 04/2024",
       linkLabel: "Private build",
+      screenshots: [
+        "/proj_ss/Deretso%201.png",
+        "/proj_ss/Deretso%202.png",
+        "/proj_ss/Deretso%203.png",
+        "/proj_ss/Deretso%204.png",
+      ],
       bullets: [
         "Tech Lead of an 8-member team; built the full frontend for a route optimizer balancing cost, time, and efficiency across Metro Manila.",
         "Recognized at a national hackathon.",
       ],
     },
     {
-      name: "ML Pipeline",
+      name: "Family Income Expenditure Analysis and ML Modeling",
       subtitle: "Philippine FIES Dataset",
-      dates: "01/2026 – Present",
-      linkLabel: "Private build",
+      dates: "02/2026 – 03/2026",
+      link: "https://github.com/Richard9235/Family-Income-Expenditure-Analysis-and-ML-Modeling",
+      linkLabel: "Notebook repo",
       bullets: [
         "Built a full ML pipeline on the Philippine FIES dataset — performed EDA, feature engineering, and trained 10 models (5 regression, 5 classification).",
         "Delivered concurrently with two active internships, demonstrating execution under constraint.",
+      ],
+    },
+    {
+      name: "NLP Fundamentals and Application Sentiment Topic and Customer Segmentation",
+      subtitle: "Womens Clothing E-Commerce Reviews",
+      dates: "04/2026 – 05/2026",
+      link: "https://github.com/Richard9235/Family-Income-Expenditure-Analysis-and-ML-Modeling",
+      linkLabel: "Notebook repo",
+      bullets: [
+        "Developed an NLP pipeline to analyze e-commerce and social media reviews using Hugging Face transformers and scikit-learn, implementing sentiment analysis, zero-shot topic classification, and K-Means clustering for customer segmentation with PCA-based dimensionality reduction.",
       ],
     },
     {
@@ -138,7 +161,7 @@ export const resume = {
     {
       name: "Dodger Game",
       subtitle: "Arcade MakeCode Game",
-      dates: "GitHub",
+      website: "https://richard9235.github.io/dodger-game-by-richard/",
       link: "https://github.com/Richard9235/dodger-game-by-richard",
       linkLabel: "GitHub repo",
       bullets: ["First arcade game built with MakeCode."],
@@ -158,14 +181,6 @@ export const resume = {
       link: "https://github.com/Richard9235/NextJS_Dox",
       linkLabel: "GitHub repo",
       bullets: ["Personal documentation and notes for Next.js."],
-    },
-    {
-      name: "Date",
-      subtitle: "CSS Layout Experiment",
-      dates: "GitHub",
-      link: "https://github.com/Richard9235/Date",
-      linkLabel: "GitHub repo",
-      bullets: ["Small CSS experiment and layout exploration."],
     },
   ],
   education: [
