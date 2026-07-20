@@ -43,6 +43,7 @@ export const resume = {
     {
       title: "Project Manager & Team Lead Intern",
       company: "Cliqueha Information Services",
+      companyWebsite: "https://cliqueha.com",
       dates: "02/2026 – Present",
       bullets: [
         "Led a 6-person team across 4 concurrent client projects — daily standups, sprint tracking, executive reporting.",
@@ -54,6 +55,7 @@ export const resume = {
     {
       title: "Backend Engineer Intern",
       company: "Bitskwela",
+      companyWebsite: "https://www.bitskwela.com",
       dates: "01/2026 – Present",
       bullets: [
         "Sole backend engineer for a Web3 learning platform — architected full Django + Supabase + React.js stack from scratch.",
@@ -63,6 +65,8 @@ export const resume = {
     {
       title: "Founding President",
       company: "TechCon",
+      companyWebsite: "https://www.facebook.com/profile.php?id=61582555934152",
+      companyLogo: "/icons/TechCon%20Logo.png",
       dates: "09/2025 – Present",
       bullets: [
         "Founded and scaled a 111-member student tech organization.",

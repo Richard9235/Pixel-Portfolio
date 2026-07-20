@@ -195,7 +195,29 @@ export default function Home() {
                     <h3 className="font-pixel text-sm text-white">
                       {role.title}
                     </h3>
-                    <p className="text-xs text-zinc-400">{role.company}</p>
+                    <div className="mt-1 flex items-center gap-2">
+                      {"companyLogo" in role && role.companyLogo ? (
+                        <Image
+                          src={role.companyLogo}
+                          alt={`${role.company} logo`}
+                          width={18}
+                          height={18}
+                          className="h-[18px] w-[18px] object-contain"
+                        />
+                      ) : null}
+                      {role.companyWebsite ? (
+                        <a
+                          className="text-xs text-zinc-400 underline decoration-dotted underline-offset-4 transition hover:text-white"
+                          href={role.companyWebsite}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {role.company}
+                        </a>
+                      ) : (
+                        <p className="text-xs text-zinc-400">{role.company}</p>
+                      )}
+                    </div>
                   </div>
                   <span className="text-xs text-cyan-200">{role.dates}</span>
                 </div>
