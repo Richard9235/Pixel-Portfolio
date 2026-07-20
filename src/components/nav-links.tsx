@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { HTMLAttributeAnchorTarget } from "react";
 
 type NavLink = {
   label: string;
-  id: string;
+  id?: string;
+  href?: string;
+  download?: boolean | string;
+  target?: HTMLAttributeAnchorTarget;
+  rel?: string;
+  useHash?: boolean;
+  hourglass?: boolean;
 };
 
 type NavLinksProps = {
@@ -68,16 +75,25 @@ export default function NavLinks({ items }: NavLinksProps) {
 
   return (
     <nav className="grid gap-3 text-xs text-zinc-300 sm:grid-cols-2 lg:w-64">
-      {items.map((item) => (
-        <a
-          key={item.id}
-          href={`#${item.id}`}
-          className="pixel-card rounded-sm border border-white/15 bg-black/20 px-4 py-2 text-center transition hover:text-white"
-          onClick={startHourglass}
-        >
-          {item.label}
-        </a>
-      ))}
+      {items.map((item) => {
+        const href =
+          item.href ?? (item.id && (item.useHash ?? true) ? `#${item.id}` : "#");
+        const shouldUseHourglass = item.hourglass ?? Boolean(item.id);
+
+        return (
+          <a
+            key={`${item.label}-${href}`}
+            href={href}
+            target={item.target}
+            rel={item.rel}
+            download={item.download}
+            className="pixel-card rounded-sm border border-white/15 bg-black/20 px-4 py-2 text-center transition hover:text-white"
+            onClick={shouldUseHourglass ? startHourglass : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
     </nav>
   );
 }

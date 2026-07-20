@@ -5,6 +5,7 @@ import CertificatesGrid from "@/components/certificates-grid";
 import PageLoader from "@/components/page-loader";
 import NavLinks from "@/components/nav-links";
 import PrivateProjectCard from "@/components/private-project-card";
+import ProfileContactCopy from "@/components/profile-contact-copy";
 import { resume } from "@/data/resume";
 
 type SectionProps = {
@@ -121,20 +122,10 @@ export default function Home() {
             </h1>
             <p className="mt-4 text-lg text-zinc-200">{resume.title}</p>
             <p className="mt-3 text-sm text-zinc-400">{resume.contact.location}</p>
-            <div className="mt-6 flex flex-wrap gap-3 text-xs">
-              <a
-                className="pixel-card rounded-sm border border-white/20 bg-black/30 px-4 py-2 text-cyan-100 transition hover:text-white"
-                href={`mailto:${resume.contact.email}`}
-              >
-                {resume.contact.email}
-              </a>
-              <a
-                className="pixel-card rounded-sm border border-white/20 bg-black/30 px-4 py-2 text-cyan-100 transition hover:text-white"
-                href={`tel:${resume.contact.phone.replace(/\\s/g, "")}`}
-              >
-                {resume.contact.phone}
-              </a>
-            </div>
+            <ProfileContactCopy
+              email={resume.contact.email}
+              phone={resume.contact.phone}
+            />
             <div className="mt-4 flex flex-wrap gap-4 text-sm text-zinc-300">
               <a
                 className="underline decoration-dotted underline-offset-4 transition hover:text-white"
@@ -154,17 +145,25 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <NavLinks
-            items={[
-              { label: "About", id: "about" },
-              { label: "Experience", id: "experience" },
-              { label: "Projects", id: "projects" },
-              { label: "Skills", id: "skills" },
-              { label: "Education", id: "education" },
-              { label: "Certificates", id: "certificates" },
-              { label: "Contact", id: "contact" },
-            ]}
-          />
+          <div className="flex flex-col items-start gap-3 lg:items-end">
+            <NavLinks
+              items={[
+                { label: "About", id: "about" },
+                { label: "Experience", id: "experience" },
+                { label: "Projects", id: "projects" },
+                { label: "Skills", id: "skills" },
+                { label: "Education", id: "education" },
+                { label: "Certificates", id: "certificates" },
+                { label: "Contact", id: "contact" },
+                {
+                  label: "Resume",
+                  href: "/documents/RichardIIMajarucon_FullStackDev_2026.pdf",
+                  download: true,
+                  hourglass: false,
+                },
+              ]}
+            />
+          </div>
         </div>
       </header>
 
@@ -196,15 +195,6 @@ export default function Home() {
                       {role.title}
                     </h3>
                     <div className="mt-1 flex items-center gap-2">
-                      {"companyLogo" in role && role.companyLogo ? (
-                        <Image
-                          src={role.companyLogo}
-                          alt={`${role.company} logo`}
-                          width={18}
-                          height={18}
-                          className="h-[18px] w-[18px] object-contain"
-                        />
-                      ) : null}
                       {role.companyWebsite ? (
                         <a
                           className="text-xs text-zinc-400 underline decoration-dotted underline-offset-4 transition hover:text-white"
@@ -219,15 +209,40 @@ export default function Home() {
                       )}
                     </div>
                   </div>
-                  <span className="text-xs text-cyan-200">{role.dates}</span>
+                  <div className="flex flex-col items-start gap-2 sm:items-end">
+                    <span className="text-xs text-cyan-200">{role.dates}</span>
+                  </div>
                 </div>
-                <ul className="mt-4 space-y-2 text-sm text-zinc-200">
-                  {role.bullets.map((bullet) => (
-                    <li key={bullet} className="list-[square] pl-5">
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
+                {role.company === "TechCon" && role.companyLogo ? (
+                  <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <ul className="space-y-2 text-sm text-zinc-200 sm:flex-1">
+                      {role.bullets.map((bullet) => (
+                        <li key={bullet} className="list-[square] pl-5">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex justify-start sm:justify-end sm:pl-4">
+                      <div className="pixel-circle-holder">
+                        <Image
+                          src={role.companyLogo}
+                          alt={`${role.company} logo`}
+                          width={450}
+                          height={450}
+                          className="h-12 w-12 object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <ul className="mt-4 space-y-2 text-sm text-zinc-200">
+                    {role.bullets.map((bullet) => (
+                      <li key={bullet} className="list-[square] pl-5">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
